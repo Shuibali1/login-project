@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style1.css">
+<title>Contact Us</title>
+</head>
+<body>
+    <div class="contact">
+        <h1 class="contact-title">Gabi's Kids Holiday Gifting</h1>
+        <form action="" name="Contact-Us">
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <input type="Name" name="Name" id="Name">
+            </div>
+            <div class="form-group">
+                <label for="Address">Address</label>
+                <input type="Address" name="Address" id="Address">
+            </div>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="Email" name="Email" id="Email">
+            </div>
+            <div class="form-group">
+                <label for="Phone">Phone</label>
+                <input type="Phone" id="Phone" placeholder="+1 253 555 1235" name="Phone" required>
+            </div>
+            <div class="form-group">
+                <label for="SomeWant">Something You Want</label>
+                <input type="SomeWant" name="SomeWant" id="SomeWant">
+            </div>
+            <div class="form-group">
+                <label for="SomeNeed">Something You Need</label>
+                <input type="SomeNeed" name="SomeNeed" id="SomeNeed">
+            </div>
+            <div class="form-group">
+                <label for="SomeWear">Something to Wear</label>
+                <input type="SomeWear" name="SomeWear" id="SomeWear">
+            </div>
+            <div class="form-group">
+                <label for="SomeRead">Something to Read</label>
+                <input type="SomeRead" name="SomeRead" id="SomeRead">
+            </div>
+            <div class="form-group">
+                <label for="Message">Message</label>
+                <textarea name="Message" id="Message" cols="30" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwT6cwsrSoKNNgyg8zuKRnUGXRy-6IYq2aikVOsTcFH78tKZGmDGCt1MyqkrbSApqcV/exec'
+        const form = document.forms['Contact-Us']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                form.reset()
+                console.log('Success!', response)
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+
+</body>
+</html>
