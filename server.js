@@ -1,22 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
+const cors = require('cors');
 
 const app = express();
 const port = 3000;
 
-// Middleware to parse incoming JSON requests
+app.use(cors()); // Enable CORS
 app.use(bodyParser.json());
 
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
-
-// In-memory user data (for demonstration purposes)
 const users = {
   'gabi1': 'password123',
 };
 
-// Handle login requests
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
@@ -27,10 +22,7 @@ app.post('/login', (req, res) => {
   }
 });
 
-// Serve the index.html file
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+app.use(express.static('public'));
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
